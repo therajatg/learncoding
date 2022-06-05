@@ -1,9 +1,23 @@
 import style from "./navbar.module.css";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useAuth } from "../../contexts/authContext";
 
 export function Navbar() {
+  let { authState, authDispatch } = useAuth();
+  let { token } = authState;
+  const navigate = useNavigate();
+  console.log(token);
+
+  const loginHandler = () => {
+    navigate("/login");
+  };
+
+  const logoutHandler = () => {
+    authDispatch({ type: "TOKEN", payload: null });
+  };
+
   return (
     <nav className={style.navContainer}>
       <div className={style.topLine}>
@@ -13,7 +27,7 @@ export function Navbar() {
         <Link to="/" className={style.option}>
           Home
         </Link>
-        <Link to="/" className={style.option}>
+        <Link to="/history" className={style.option}>
           History
         </Link>
         <Link to="/" className={style.option}>
@@ -46,7 +60,16 @@ export function Navbar() {
           />
           <FaSearch className={style.searchIcon} />
         </div>
-        <button className={style.login}>Login</button>
+        {token && (
+          <button onClick={logoutHandler} className={style.login}>
+            Logout
+          </button>
+        )}
+        {!token && (
+          <button onClick={loginHandler} className={style.login}>
+            Login
+          </button>
+        )}
       </div>
     </nav>
   );
