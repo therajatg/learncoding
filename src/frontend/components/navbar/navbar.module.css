@@ -1,0 +1,84 @@
+.navContainer {
+  display: flex;
+  background-color: var(--nav-color);
+  padding: 0 var(--nav-side-padding);
+  justify-content: space-between;
+  column-gap: 2rem;
+  top: 0px;
+  position: sticky;
+}
+
+.topLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40vw;
+}
+
+.bottomLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40vw;
+}
+
+.logo {
+  text-decoration: none;
+  color: white;
+}
+
+.option {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdownContent {
+  position: absolute;
+  width: 10rem;
+  background: linear-gradient(
+    to top,
+    var(--background-color),
+    var(--dropdown-category-background-color)
+  );
+  display: none;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.searchBar {
+  width: 30vw;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.searchInput {
+  width: 26vw;
+  height: 1.8rem;
+  border: none;
+  background-color: var(--nav-search-color);
+}
+
+.searchIcon {
+  color: var(--text-color);
+  background-color: var(--nav-color);
+  position: absolute;
+}
+
+.login {
+  background-color: var(--button-dark-color);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-weight: 1000;
+  color: var(--text-color);
+}

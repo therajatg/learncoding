@@ -1,0 +1,49 @@
+.videoCard {
+  background-color: var(--nav-color);
+  display: flex;
+  flex-direction: column;
+  width: 12rem;
+  height: 20rem;
+  justify-content: flex-end;
+  border-radius: 0.5rem;
+  transition-property: all;
+  transition-duration: 1s;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.videoAction {
+  display: none;
+  background-image: linear-gradient(
+    to bottom,
+    var(--card-text-background-color-one),
+    var(--card-text-background-color-two)
+  );
+}
+
+.videoAction button {
+  background: transparent;
+  border: none;
+  color: var(--card-text-color);
+}
+
+.videoAction button:hover {
+  background: var(--card-button-background-hover-color);
+  border: none;
+}
+
+.videoCard:hover .videoAction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+.videoCard:hover {
+  transform: scale(1.25);
+}
