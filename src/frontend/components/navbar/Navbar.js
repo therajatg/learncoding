@@ -3,12 +3,20 @@ import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useAuth } from "../../contexts/authContext";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export function Navbar() {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const res = await axios.get("/api/categories");
+      setCategories(res.data.categories);
+    })();
+  });
   let { authState, authDispatch } = useAuth();
   let { token } = authState;
   const navigate = useNavigate();
-  console.log(token);
 
   const loginHandler = () => {
     navigate("/login");
@@ -30,10 +38,10 @@ export function Navbar() {
         <Link to="/history" className={style.option}>
           History
         </Link>
-        <Link to="/" className={style.option}>
+        <Link to="/liked" className={style.option}>
           Liked
         </Link>
-        <Link to="/" className={style.option}>
+        <Link to="/watchLater" className={style.option}>
           Watch Later
         </Link>
         <Link to="/" className={style.option}>
@@ -42,11 +50,9 @@ export function Navbar() {
         <Link to="/" className={`${style.option} ${style.dropdown}`}>
           Categories <IoMdArrowDropdown />
           <div className={style.dropdownContent}>
-            <p>JavaScript Concepts</p>
-            <p>Promise in JavaScript</p>
-            <p>ReactJS Concepts</p>
-            <p>React Router</p>
-            <p>CSS</p>
+            {categories.map((category) => (
+              <p>{category.categoryName}</p>
+            ))}
           </div>
         </Link>
       </div>

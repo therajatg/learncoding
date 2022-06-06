@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 1rem;
+}
+
+.playingVideo {
+  margin: auto;
+}
+
+.relatedVideos {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.relatedVideo {
+  height: 10rem;
+  width: 15rem;
+}

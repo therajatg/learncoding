@@ -6,60 +6,67 @@ import { v4 as uuid } from "uuid";
 
 export const videos = [
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "lluVvNFLx5k",
+    title: "Promise main",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_13_jrrmur.png",
+    category: "Promise in JavaScript",
   },
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "pkI4WoFCVms",
+    title: "Promise resolve and reject",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_15_dr1xp5.png",
+    category: "Promise in JavaScript",
   },
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "lS5HRMW9vCI",
+    title: "Promise.all",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_16_uh6aqy.png",
+    category: "Promise in JavaScript",
   },
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "fFy997K6ujU",
+    title: "Promise.race()",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_18_ya2aut.png",
+    category: "Promise in JavaScript",
   },
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "_fE9HHVDTVY",
+    title: "Promise.allSettled()",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_13_jrrmur.png",
+    category: "Promise in JavaScript",
   },
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "8j_A2REHjZw",
+    title: "Promise.any()",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_15_dr1xp5.png",
+    category: "Promise in JavaScript",
   },
   {
-    _id: uuid(),
-    title: "this keyword in JavaScipt",
+    _id: "5XCSuwzC4lY",
+    title: "async-await",
     description:
       " All you need to know about 'this' keyword in JavaScript and its related methods.",
     thumbnail:
       "http://res.cloudinary.com/therajatg/image/upload/video library/My_Blog_16_uh6aqy.png",
+    category: "Promise in JavaScript",
   },
   {
     _id: uuid(),
