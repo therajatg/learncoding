@@ -1,4 +1,4 @@
-import style from "./videoCard.module.css";
+import styles from "../videoCard/videoCard.module.css";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
@@ -15,7 +15,7 @@ import {
 
 import { useAuth } from "../../contexts/authContext";
 
-export function VideoCard(prop) {
+export function HistoryCard(prop) {
   const { authState } = useAuth();
   const { token } = authState;
   const { dataState, dataDispatch } = useData();
@@ -24,8 +24,8 @@ export function VideoCard(prop) {
   const { thumbnail, _id } = videoDetail;
 
   return (
-    <div className={style.videoCard}>
-      <Link to={`/tutorial/${_id}`} className={style.thumbnail}>
+    <div className={styles.videoCard}>
+      <Link to={`/tutorial/${_id}`} className={styles.thumbnail}>
         <img
           src={thumbnail}
           alt="Thumbnail"
@@ -39,10 +39,10 @@ export function VideoCard(prop) {
           }}
         />
       </Link>
-      <div className={style.videoAction}>
+      <div className={styles.videoAction}>
         {watchLaterData.find((video) => video._id === _id) ? (
           <button
-            className={style.watchLater}
+            className={styles.watchLater}
             onClick={() => deleteFromWatchLater(_id, token, dataDispatch)}
           >
             <BsFillStopwatchFill />
@@ -50,7 +50,7 @@ export function VideoCard(prop) {
           </button>
         ) : (
           <button
-            className={style.watchLater}
+            className={styles.watchLater}
             onClick={() => addToWatchLater(videoDetail, token, dataDispatch)}
           >
             <BsFillStopwatchFill />
@@ -60,7 +60,7 @@ export function VideoCard(prop) {
 
         {likedData.find((video) => video._id === _id) ? (
           <button
-            className={style.addToLiked}
+            className={styles.addToLiked}
             onClick={() => deleteFromLiked(_id, token, dataDispatch)}
           >
             <AiFillLike />
@@ -68,7 +68,7 @@ export function VideoCard(prop) {
           </button>
         ) : (
           <button
-            className={style.addToLiked}
+            className={styles.addToLiked}
             onClick={() => addToLiked(videoDetail, token, dataDispatch)}
           >
             <AiFillLike />
@@ -76,9 +76,12 @@ export function VideoCard(prop) {
           </button>
         )}
 
-        <button className={style.addToPlaylist}>
+        <button className={styles.addToPlaylist}>
           <MdPlaylistAdd />
           Add To Playlist
+        </button>
+        <button onClick={() => deleteItemFromHistory(_id, token, dataDispatch)}>
+          Remove From History
         </button>
       </div>
     </div>

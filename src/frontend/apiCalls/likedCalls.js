@@ -33,7 +33,7 @@ const addToLiked = async (video, token, dataDispatch) => {
 const deleteFromLiked = async (id, token, dataDispatch) => {
   try {
     const res = await axios.delete(`/api/user/likes/${id}`, {
-      authorization: token,
+      headers: { authorization: token },
     });
     dataDispatch({ type: "LIKED", payload: res.data.likes });
   } catch (err) {
