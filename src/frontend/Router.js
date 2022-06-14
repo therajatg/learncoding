@@ -8,9 +8,11 @@ import {
   Liked,
   Playlist,
   ErrorPage,
+  PlayVideo,
 } from "./pages/index";
 import Mockman from "mockman-js";
 import { RequiresAuth } from "./RequiresAuth";
+
 export function Router() {
   return (
     <Routes>
@@ -26,7 +28,7 @@ export function Router() {
         }
       />
       <Route
-        path="/watch-later"
+        path="/watchLater"
         element={
           <RequiresAuth>
             <WatchLater />
@@ -34,7 +36,7 @@ export function Router() {
         }
       />
       <Route
-        path="/watch-later"
+        path="/liked"
         element={
           <RequiresAuth>
             <Liked />
@@ -49,6 +51,7 @@ export function Router() {
           </RequiresAuth>
         }
       />
+      <Route path="/tutorial/:videoId" element={<PlayVideo />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path="/test" element={<Mockman />} />
     </Routes>

@@ -1,0 +1,15 @@
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exploreLink {
+  font-size: x-large;
+  color: var(--button-light-color);
+}
+
+.exploreLink:hover {
+  color: var(--button-dark-color);
+}

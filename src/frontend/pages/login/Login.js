@@ -37,7 +37,8 @@ export function Login() {
       });
       localStorage.setItem("token", res.data.encodedToken);
       authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
-      navigate(location.state.from.pathname, { replace: true });
+      let from = location.state?.from?.pathname || "/";
+      navigate(from, { replace: true });
     } catch (err) {
       console.log(err);
     }

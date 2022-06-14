@@ -6,6 +6,7 @@
   column-gap: 2rem;
   top: 0px;
   position: sticky;
+  margin-bottom: 3.5rem;
 }
 
 .topLine {
@@ -47,6 +48,7 @@
     var(--dropdown-category-background-color)
   );
   display: none;
+  border-radius: 0.3rem;
 }
 
 .dropdown:hover .dropdownContent {

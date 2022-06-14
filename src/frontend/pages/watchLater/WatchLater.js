@@ -1,3 +1,32 @@
+import { useEffect } from "react";
+import { getWatchLater } from "../../apiCalls/index";
+import { useData, useAuth } from "../../contexts/index";
+import { Navbar, NoVideo } from "../../components/index";
+import { VideoCard } from "../../components/videoCard/VideoCard";
+import style from "./watchLater.module.css";
+
 export function WatchLater() {
-  return;
+  const { dataState, dataDispatch } = useData();
+  const { watchLaterData } = dataState;
+  const { authState } = useAuth();
+  const { token } = authState;
+
+  useEffect(() => {
+    getWatchLater(token, dataDispatch);
+  }, []);
+
+  return (
+    <div>
+      <Navbar />
+      {watchLaterData.length > 0 ? (
+        <div className={style.main}>
+          {watchLaterData.map((video) => (
+            <VideoCard videoDetail={video} />
+          ))}
+        </div>
+      ) : (
+        <NoVideo />
+      )}
+    </div>
+  );
 }
