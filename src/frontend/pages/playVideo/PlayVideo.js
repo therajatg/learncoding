@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { Navbar } from "../../components/index";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { Navbar, VideoCard } from "../../components/index";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
@@ -18,27 +18,33 @@ import axios from "axios";
 
 export function PlayVideo() {
   const { authState } = useAuth();
+  const navigate = useNavigate();
   const { token } = authState;
   const { dataState, dataDispatch } = useData();
   const { historyData, likedData, watchLaterData } = dataState;
   const { videoId } = useParams();
   const [clickedVideo, setClickedVideo] = useState({});
   const [relatedVideos, setRelatedVideos] = useState([]);
+  const [allVideos, setAllVideos] = useState([]);
 
   useEffect(() => {
     (async () => {
       const res1 = await axios.get(`/api/video/${videoId}`);
       setClickedVideo(res1.data.video);
       const res2 = await axios.get("/api/videos");
-      const allVideos = res2.data.videos;
-
-      setRelatedVideos(
-        allVideos.filter((video) => video.category === clickedVideo.category)
-      );
+      setAllVideos(res2.data.videos);
+      setRelatedVideos(filterVideos);
     })();
-  }, []);
+  }, [clickedVideo]);
+  const filterVideos = allVideos.filter(
+    (video) => video.category === clickedVideo.category
+  );
 
   const isPresentInWatchLater = watchLaterData.find(
+    (video) => video._id === clickedVideo._id
+  );
+
+  const isPresentInLiked = likedData.find(
     (video) => video._id === clickedVideo._id
   );
 
@@ -62,41 +68,41 @@ export function PlayVideo() {
             <h2 className={style.actions}>
               <BsFillStopwatchFill
                 title="Watch Later"
-                className={`isPresentInWatchLater ? ${style.present} : ${style.absent}`}
+                className={isPresentInWatchLater ? style.present : style.absent}
                 onClick={() => {
-                  isPresentInWatchLater
-                    ? deleteFromWatchLater(
-                        clickedVideo._id,
-                        token,
-                        dataDispatch
-                      )
-                    : addToWatchLater(clickedVideo, token, dataDispatch);
+                  token
+                    ? isPresentInWatchLater
+                      ? deleteFromWatchLater(
+                          clickedVideo._id,
+                          token,
+                          dataDispatch
+                        )
+                      : addToWatchLater(clickedVideo, token, dataDispatch)
+                    : navigate("/login");
                 }}
               />
-              <AiFillLike title="Like" />
+              <AiFillLike
+                title="Like"
+                className={isPresentInLiked ? style.present : style.absent}
+                onClick={() => {
+                  token
+                    ? isPresentInLiked
+                      ? deleteFromLiked(clickedVideo._id, token, dataDispatch)
+                      : addToLiked(clickedVideo, token, dataDispatch)
+                    : navigate("/login");
+                }}
+              />
               <MdPlaylistAdd title="Add to Playlist" />
             </h2>
           </div>
         </div>
 
         <div className={style.relatedVideos}>
-          {relatedVideos.map((videoDetail) => (
-            <Link to={`/tutorial/${videoDetail._id}`}>
-              <img
-                src={videoDetail.thumbnail}
-                className={style.relatedVideo}
-                onClick={() => {
-                  if (
-                    historyData.find((video) => video._id === videoDetail._id)
-                  ) {
-                    deleteItemFromHistory(videoDetail._id, token, dataDispatch);
-                    addToHistory(videoDetail, token, dataDispatch);
-                  } else {
-                    addToHistory(videoDetail, token, dataDispatch);
-                  }
-                }}
-              />
-            </Link>
+          <div className={style.relatedVideosTitle}>
+            {clickedVideo.category}
+          </div>
+          {relatedVideos.map((video) => (
+            <VideoCard videoDetail={video} />
           ))}
         </div>
       </main>

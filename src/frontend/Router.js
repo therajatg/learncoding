@@ -51,7 +51,7 @@ export function Router() {
           </RequiresAuth>
         }
       />
-      <Route path="/tutorial/:videoId" element={<PlayVideo />}></Route>
+      <Route path="/tutorial/:videoId" element={<PlayVideo />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path="/test" element={<Mockman />} />
     </Routes>

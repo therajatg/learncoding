@@ -8,26 +8,26 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "JavaScript Concepts",
+    categoryName: "javascript concepts",
   },
   {
     _id: uuid(),
-    categoryName: "Promise in JavaScript",
+    categoryName: "promise in javascript",
   },
   {
     _id: uuid(),
-    categoryName: "React Hooks",
+    categoryName: "react hooks",
   },
   {
     _id: uuid(),
-    categoryName: "React Router",
+    categoryName: "react router",
   },
   {
     _id: uuid(),
-    categoryName: "CSS",
+    categoryName: "css",
   },
   {
     _id: uuid(),
-    categoryName: "HTML",
+    categoryName: "html",
   },
 ];

@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./frontend/contexts/authContext";
-import { DataProvider } from "./frontend/contexts/dataContext";
+import { AuthProvider, DataProvider } from "./frontend/contexts/index";
+
 // Call make Server
 makeServer();
 

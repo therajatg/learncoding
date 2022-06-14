@@ -2,8 +2,8 @@
   background-color: var(--nav-color);
   display: flex;
   flex-direction: column;
-  width: 12rem;
-  height: 20rem;
+  width: 18.75rem;
+  height: 10.547rem;
   justify-content: flex-end;
   border-radius: 0.5rem;
   transition-property: all;
@@ -19,11 +19,6 @@ img,
 
 .videoAction {
   display: none;
-  background-image: linear-gradient(
-    to bottom,
-    var(--card-text-background-color-one),
-    var(--card-text-background-color-two)
-  );
 }
 
 .videoAction button {
@@ -46,9 +41,5 @@ img,
 }
 
 .videoCard:hover {
-  transform: scale(1.25);
-}
-
-.watchLater {
-  color: red;
+  transform: scale(1.1);
 }

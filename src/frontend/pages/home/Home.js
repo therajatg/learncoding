@@ -1,22 +1,16 @@
 import { Navbar, VideoCard } from "../../components/index";
-import { useEffect, useState } from "react";
+import { useData } from "../../contexts/index";
 import style from "./home.module.css";
-import axios from "axios";
 
 export function Home() {
-  const [videos, setVideos] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const res = await axios.get("/api/videos");
-      setVideos(res.data.videos);
-      console.log(videos);
-    })();
-  }, []);
+  const { dataState } = useData();
+  const { filteredData } = dataState;
+
   return (
     <div className={style.home}>
       <Navbar className={style.navbar} />
       <main className={style.mainContainer}>
-        {videos.map((videoDetail) => (
+        {filteredData.map((videoDetail) => (
           <VideoCard videoDetail={videoDetail} key={videoDetail._id} />
         ))}
       </main>
