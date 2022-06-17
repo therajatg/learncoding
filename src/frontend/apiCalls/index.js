@@ -10,3 +10,11 @@ export {
   addToWatchLater,
   deleteFromWatchLater,
 } from "./watchLaterCalls";
+export {
+  getAllPlaylists,
+  getPlaylist,
+  addNewPlaylist,
+  addVideoToPlaylist,
+  deletePlaylist,
+  deleteVideoFromPlaylist,
+} from "./playlistCalls";

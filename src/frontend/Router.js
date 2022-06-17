@@ -9,6 +9,7 @@ import {
   Playlist,
   ErrorPage,
   PlayVideo,
+  PlaylistVideos,
 } from "./pages/index";
 import Mockman from "mockman-js";
 import { RequiresAuth } from "./RequiresAuth";
@@ -19,6 +20,7 @@ export function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/test-api" element={<Mockman />} />
       <Route
         path="/history"
         element={
@@ -43,14 +45,18 @@ export function Router() {
           </RequiresAuth>
         }
       />
+
       <Route
-        path="/watch-later"
+        path="/playlist"
         element={
           <RequiresAuth>
             <Playlist />
           </RequiresAuth>
         }
       />
+
+      <Route path="playlist/:playlistId" element={<PlaylistVideos />} />
+
       <Route path="/tutorial/:videoId" element={<PlayVideo />} />
       <Route path="*" element={<ErrorPage />} />
       <Route path="/test" element={<Mockman />} />

@@ -6,6 +6,15 @@ function dataReducer(state, action) {
       return { ...state, watchLaterData: action.payload };
     case "LIKED":
       return { ...state, likedData: action.payload };
+    case "PLAYLIST":
+      return { ...state, playlistData: action.payload };
+    case "SINGLE_PLAYLIST":
+      const data = state.playlistData.filter(
+        (item) => item._id !== action.payload._id
+      );
+
+      return { ...state, playlistData: [...data, action.payload] };
+
     case "SEARCH":
       return {
         ...state,

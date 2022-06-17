@@ -7,3 +7,4 @@ export { ErrorPage } from "./errorPage/ErrorPage";
 export { Liked } from "./liked/Liked";
 export { Playlist } from "./playlist/Playlist";
 export { PlayVideo } from "./playVideo/PlayVideo";
+export { PlaylistVideos } from "./playlistVideos/PlaylistVideos";

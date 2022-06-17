@@ -23,6 +23,7 @@ const DataProvider = ({ children }) => {
     historyData: [],
     watchLaterData: [],
     likedData: [],
+    playlistData: [],
     originalData: [],
     filteredData: [],
   });

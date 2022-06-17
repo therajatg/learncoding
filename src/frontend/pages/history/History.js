@@ -21,7 +21,7 @@ export function History() {
       {historyData.length > 0 ? (
         <div className={style.main}>
           {historyData.map((video) => (
-            <HistoryCard videoDetail={video} />
+            <HistoryCard videoDetail={video} key={video._id} />
           ))}
         </div>
       ) : (

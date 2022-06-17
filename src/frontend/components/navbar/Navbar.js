@@ -26,9 +26,8 @@ export function Navbar() {
 
   const logoutHandler = () => {
     authDispatch({ type: "TOKEN", payload: null });
+    localStorage.removeItem("token");
   };
-
-  const searchHandler = () => {};
 
   return (
     <nav className={style.navContainer}>
@@ -52,7 +51,7 @@ export function Navbar() {
         <Link to="/watchLater" className={style.option}>
           Watch Later
         </Link>
-        <Link to="/" className={style.option}>
+        <Link to="/playlist" className={style.option}>
           Playlist
         </Link>
         <Link to="/" className={`${style.option} ${style.dropdown}`}>
@@ -67,6 +66,7 @@ export function Navbar() {
                     payload: e.target.value,
                   })
                 }
+                key={category._id}
               >
                 {category.categoryName}
               </option>
