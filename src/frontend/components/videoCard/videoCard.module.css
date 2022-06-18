@@ -10,6 +10,16 @@
   transition-duration: 1s;
 }
 
+.videoCardWithoutHover {
+  background-color: var(--nav-color);
+  display: flex;
+  flex-direction: column;
+  width: 18.75rem;
+  height: 10.547rem;
+  justify-content: flex-end;
+  border-radius: 0.5rem;
+}
+
 img,
 .thumbnail {
   height: 100%;

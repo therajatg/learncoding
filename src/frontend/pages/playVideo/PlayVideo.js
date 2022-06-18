@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Navbar, VideoCard } from "../../components/index";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
@@ -10,8 +10,6 @@ import {
   deleteFromLiked,
   addToWatchLater,
   deleteFromWatchLater,
-  addToHistory,
-  deleteItemFromHistory,
 } from "../../apiCalls/index";
 import style from "./PlayVideo.module.css";
 import axios from "axios";
@@ -21,7 +19,7 @@ export function PlayVideo() {
   const navigate = useNavigate();
   const { token } = authState;
   const { dataState, dataDispatch } = useData();
-  const { historyData, likedData, watchLaterData } = dataState;
+  const { likedData, watchLaterData } = dataState;
   const { videoId } = useParams();
   const [clickedVideo, setClickedVideo] = useState({});
   const [relatedVideos, setRelatedVideos] = useState([]);
@@ -102,7 +100,7 @@ export function PlayVideo() {
             {clickedVideo.category}
           </div>
           {relatedVideos.map((video) => (
-            <VideoCard videoDetail={video} />
+            <VideoCard videoDetail={video} key={video._id} />
           ))}
         </div>
       </main>

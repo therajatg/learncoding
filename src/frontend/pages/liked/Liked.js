@@ -21,7 +21,7 @@ export function Liked() {
       {likedData.length > 0 ? (
         <div className={style.main}>
           {likedData.map((video) => (
-            <VideoCard videoDetail={video} />
+            <VideoCard videoDetail={video} key={video._id} />
           ))}
         </div>
       ) : (

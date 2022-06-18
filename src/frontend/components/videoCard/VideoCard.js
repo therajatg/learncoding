@@ -1,4 +1,5 @@
 import style from "./videoCard.module.css";
+import { useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
@@ -14,18 +15,19 @@ import {
 } from "../../apiCalls/index";
 
 import { useAuth } from "../../contexts/authContext";
+import { PlaylistModal } from "../index";
 
-export function VideoCard(prop) {
+export function VideoCard({ videoDetail }) {
   const { authState } = useAuth();
   const { token } = authState;
   const { dataState, dataDispatch } = useData();
   const { watchLaterData, likedData, historyData } = dataState;
-  const { videoDetail } = prop;
+  const [modal, setModal] = useState(false);
   const { thumbnail, _id } = videoDetail;
   const navigate = useNavigate();
 
   return (
-    <div className={style.videoCard}>
+    <div className={modal ? style.videoCardWithoutHover : style.videoCard}>
       <Link to={`/tutorial/${_id}`} className={style.thumbnail}>
         <img
           src={thumbnail}
@@ -97,11 +99,19 @@ export function VideoCard(prop) {
             Add To Liked
           </button>
         )}
-        <button className={style.addToPlaylist}>
+        <button
+          className={style.addToPlaylist}
+          onClick={() => {
+            setModal((prev) => !prev);
+          }}
+        >
           <MdPlaylistAdd />
           Add To Playlist
         </button>
       </div>
+      {modal ? (
+        <PlaylistModal setModal={setModal} videoDetail={videoDetail} />
+      ) : null}
     </div>
   );
 }
