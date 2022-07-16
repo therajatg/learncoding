@@ -2,10 +2,9 @@
  * Videos Database can be added here.
  * You can add videos of your wish with different attributes
  * */
-import { v4 as uuid } from "uuid";
 
 const url =
-  "http://res.cloudinary.com/therajatg/image/upload/q_auto/video library";
+  "http://res.cloudinary.com/therajatg/image/upload/f_auto,q_auto/video library";
 
 export const videos = [
   {

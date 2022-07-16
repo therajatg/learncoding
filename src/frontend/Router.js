@@ -10,6 +10,7 @@ import {
   ErrorPage,
   PlayVideo,
   PlaylistVideos,
+  PageNotFound,
 } from "./pages/index";
 import Mockman from "mockman-js";
 import { RequiresAuth } from "./RequiresAuth";
@@ -17,6 +18,7 @@ import { RequiresAuth } from "./RequiresAuth";
 export function Router() {
   return (
     <Routes>
+      <Route path="*" element={<PageNotFound />} />
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />

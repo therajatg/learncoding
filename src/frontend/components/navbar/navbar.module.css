@@ -7,6 +7,7 @@
   top: 0px;
   position: sticky;
   margin-bottom: 3.5rem;
+  z-index: 1;
 }
 
 .topLine {

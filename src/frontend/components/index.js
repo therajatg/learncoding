@@ -4,3 +4,5 @@ export { NoVideo } from "./noVideos/NoVideo";
 export { HistoryCard } from "./historyCard/HistoryCard";
 export { PlaylistModal } from "./playlistModal/PlaylistModal";
 export { PlaylistFolder } from "./playlistFolder/PlaylistFolder";
+export { HeroContent } from "./heroContent/HeroContent";
+export { RelatedVideos } from "./relatedVideos/RelatedVideos";

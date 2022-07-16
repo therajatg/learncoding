@@ -1,4 +1,4 @@
-import { Navbar, VideoCard } from "../../components/index";
+import { Navbar, HeroContent, VideoCard } from "../../components/index";
 import { useData } from "../../contexts/index";
 import style from "./home.module.css";
 
@@ -9,6 +9,7 @@ export function Home() {
   return (
     <div className={style.home}>
       <Navbar className={style.navbar} />
+      <HeroContent className={style.HeroContent} />
       <main className={style.mainContainer}>
         {filteredData.map((videoDetail) => (
           <VideoCard videoDetail={videoDetail} key={videoDetail._id} />

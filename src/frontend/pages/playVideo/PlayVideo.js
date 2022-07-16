@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Navbar, VideoCard } from "../../components/index";
+import { Navbar, RelatedVideos, relatedVideos } from "../../components/index";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
@@ -94,15 +94,7 @@ export function PlayVideo() {
             </h2>
           </div>
         </div>
-
-        <div className={style.relatedVideos}>
-          <div className={style.relatedVideosTitle}>
-            {clickedVideo.category}
-          </div>
-          {relatedVideos.map((video) => (
-            <VideoCard videoDetail={video} key={video._id} />
-          ))}
-        </div>
+        <RelatedVideos relatedVideos={relatedVideos} />
       </main>
     </>
   );
