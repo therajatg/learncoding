@@ -30,13 +30,14 @@ export function HeroContent() {
       infiniteLoop
       interval={3000}
       showThumbs={false}
+      showIndicators={false}
       onClickItem={(index, item) => {
         if (item.props.link !== undefined) {
           navigate(`tutorial/${item.props.link}`);
         }
       }}
     >
-      <div className={style.main}>
+      {/* <div className={style.main}>
         <img
           className={style.firstImage}
           src="https://res.cloudinary.com/therajatg/image/upload/v1657897068/social%20media/Coding_workshop-rafiki_1_cfycy4.svg"
@@ -51,10 +52,15 @@ export function HeroContent() {
           <br />
           we code to <span className={style.focus}>change the world</span>,
         </p>
-      </div>
+      </div> */}
 
       {items.map((item) => (
-        <img src={item.URL} className={style.image} link={item.id} />
+        <img
+          src={item.URL}
+          className={style.image}
+          link={item.id}
+          key={item.id}
+        />
       ))}
     </Carousel>
   );

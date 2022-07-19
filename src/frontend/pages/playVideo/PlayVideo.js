@@ -56,9 +56,9 @@ export function PlayVideo() {
             height="506"
             src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
 
           <div className={style.videoContent}>

@@ -23,6 +23,7 @@ function dataReducer(state, action) {
         ),
       };
     case "CATEGORY":
+      console.log(action.payload);
       return {
         ...state,
         filteredData: state.originalData.filter(
@@ -37,7 +38,7 @@ function dataReducer(state, action) {
         originalData: action.payload,
       };
     case "RESET":
-      return { ...state, searchedTerm: null, categorySelected: null };
+      return { ...state, filteredData: state.originalData };
     default:
       return state;
   }

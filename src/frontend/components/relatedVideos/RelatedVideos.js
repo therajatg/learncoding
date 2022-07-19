@@ -2,6 +2,7 @@ import style from "./relatedVideos.module.css";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useAuth, useData } from "../../contexts/index";
+import { deleteItemFromHistory, addToHistory } from "../../apiCalls/index";
 import axios from "axios";
 
 export function RelatedVideos({ relatedVideos }) {
@@ -14,15 +15,28 @@ export function RelatedVideos({ relatedVideos }) {
 
   return (
     <div className={style.relatedVideos}>
-      {/* <div className={style.relatedVideosTitle}>{clickedVideo.category}</div> */}
-      {relatedVideos.map(({ thumbnail, _id, title }) => (
-        <Link to={`/tutorial/${_id}`} className={style.thumbnail}>
+      {relatedVideos.map((relatedVideo) => (
+        <Link
+          to={`/tutorial/${relatedVideo._id}`}
+          className={style.thumbnail}
+          key={relatedVideo._id}
+          onClick={() => {
+            if (token) {
+              if (historyData.find((video) => video._id === relatedVideo._id)) {
+                deleteItemFromHistory(relatedVideo._id, token, dataDispatch);
+                addToHistory(relatedVideo, token, dataDispatch);
+              } else {
+                addToHistory(relatedVideo, token, dataDispatch);
+              }
+            }
+          }}
+        >
           <img
-            src={thumbnail}
+            src={relatedVideo.thumbnail}
             alt="Thumbnail"
             className={style.thumbnailVideo}
           />
-          <p className={style.thumbnailText}>{title}</p>
+          <p className={style.thumbnailText}>{relatedVideo.title}</p>
         </Link>
       ))}
     </div>

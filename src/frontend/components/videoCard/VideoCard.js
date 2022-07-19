@@ -1,9 +1,9 @@
 import style from "./videoCard.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../contexts/dataContext";
 import {
   addToWatchLater,
@@ -12,18 +12,20 @@ import {
   deleteFromLiked,
   addToHistory,
   deleteItemFromHistory,
+  deleteVideoFromPlaylist,
 } from "../../apiCalls/index";
 
 import { useAuth } from "../../contexts/authContext";
 import { PlaylistModal } from "../index";
 
 export function VideoCard({ videoDetail }) {
+  const { playlistId } = useParams();
   const { authState } = useAuth();
   const { token } = authState;
   const { dataState, dataDispatch } = useData();
   const { watchLaterData, likedData, historyData } = dataState;
-  const [modal, setModal] = useState(false);
   const { thumbnail, _id } = videoDetail;
+  const [modal, setModal] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -101,14 +103,36 @@ export function VideoCard({ videoDetail }) {
         )}
         <button
           className={style.addToPlaylist}
-          onClick={() => {
-            setModal((prev) => !prev);
+          onClick={(e) => {
+            token ? setModal((prev) => !prev) : navigate("/login");
           }}
         >
           <MdPlaylistAdd />
           Add To Playlist
         </button>
+        {window?.location?.pathname === "/history" && (
+          <button
+            onClick={() => deleteItemFromHistory(_id, token, dataDispatch)}
+          >
+            Remove From History
+          </button>
+        )}
+        {window?.location?.pathname === `/playlist/${playlistId}` && (
+          <button
+            onClick={() =>
+              deleteVideoFromPlaylist(
+                playlistId,
+                videoDetail._id,
+                token,
+                dataDispatch
+              )
+            }
+          >
+            Remove From This Playlist
+          </button>
+        )}
       </div>
+
       {modal ? (
         <PlaylistModal setModal={setModal} videoDetail={videoDetail} />
       ) : null}

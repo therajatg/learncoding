@@ -3,7 +3,10 @@
   margin: auto;
   display: flex;
   justify-content: center;
-  margin-top: -3rem;
+  /* margin-top: -3rem; */
+  margin: 0;
+  padding: 0;
+  /* height: 20vh; */
 }
 
 .carousel:hover {
@@ -12,7 +15,7 @@
 
 .main {
   width: 100%;
-  height: 55vh;
+  /* height: 55vh; */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -24,7 +27,7 @@
 }
 
 .image {
-  height: 55vh;
+  /* height: 55vh; */
   object-fit: contain;
 }
 
@@ -39,9 +42,9 @@
 .focus {
   color: var(--button-dark-color);
 }
-/* 
-@media screen and (min-width: 768px) {
-  .image {
-    src: url(http://subtlepatterns.com/patterns/dark_embroidery.png);
+
+/* @media screen and (max-width: 950px) {
+  .carousel {
+    margin-top: -9rem;
   }
 } */

@@ -1,6 +1,7 @@
 import style from "./signup.module.css";
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 export function Signup() {
@@ -21,18 +22,18 @@ export function Signup() {
       });
       localStorage.setItem("token", res.data.encodedToken);
       authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
+      toast.success("Signup Successful");
       navigate("/");
     } catch (err) {
-      console.log(err);
+      toast.error(`${err.response.status} Error. Please try again!`);
     }
   }
 
   return (
     <div className={style.signupPage}>
-      <h1>code2BUILD</h1>
-
       <form className={style.form} onSubmit={signupHandler}>
-        <h2>SIGN-UP</h2>
+        <p className={style.title}>Welcome to code2BUILD</p>
+
         <div className={style.name}>
           <div>
             <label htmlFor="firstName">First Name</label>
@@ -61,12 +62,7 @@ export function Signup() {
           />
         </div>
         <button className={style.signupBtn}>Create New Account</button>
-
-        <div className={style.orLine}>
-          <hr className={style.line} />
-          <p className={style.or}>OR</p>
-        </div>
-        <p>
+        <p className={style.loginLine}>
           Already have an account?{" "}
           <Link to="/login" className={style.login}>
             Login

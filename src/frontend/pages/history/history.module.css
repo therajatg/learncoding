@@ -4,9 +4,24 @@
 
 .main {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5rem;
+}
+
+.videos {
+  display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   column-gap: 2rem;
   row-gap: 3rem;
   padding: 0 2rem;
+}
+
+.clearHistory {
+  color: var(--button-light-color);
+  font-size: 1.2rem;
+}
+
+.clearHistory:hover {
+  cursor: pointer;
 }

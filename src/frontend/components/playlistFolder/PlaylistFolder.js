@@ -4,6 +4,7 @@ import { useData, useAuth } from "../../contexts/index";
 import { deletePlaylist } from "../../apiCalls/index";
 import { CgPlayList } from "react-icons/cg";
 import { AiFillDelete } from "react-icons/ai";
+import { NoVideo } from "../index";
 
 export function PlaylistFolder({ playlist }) {
   const { title, _id, videos } = playlist;
@@ -13,15 +14,23 @@ export function PlaylistFolder({ playlist }) {
 
   return (
     <div className={style.main}>
-      <div className={style.card}>
-        <Link to={`/playlist/${_id}`}>
-          <img src={videos[videos.length - 1].thumbnail} alt="" />
-          <div className={style.overlay}>
-            {playlist.videos.length}
-            <CgPlayList />
-          </div>
-        </Link>
-      </div>
+      {videos.length > 0 ? (
+        <div className={style.card}>
+          <Link to={`/playlist/${_id}`}>
+            <img src={videos[videos.length - 1].thumbnail} alt="" />
+            <div className={style.overlay}>
+              {playlist.videos.length}
+              <CgPlayList />
+            </div>
+          </Link>
+        </div>
+      ) : (
+        <div className={`${style.card} ${style.emptyPlaylist}`}>
+          <p>Empty Playlist</p>
+          <Link to="/">Explore Videos</Link>
+        </div>
+      )}
+
       <div className={style.playlistAction}>
         <span>{title}</span>
         <span onClick={() => deletePlaylist(playlist._id, token, dataDispatch)}>
