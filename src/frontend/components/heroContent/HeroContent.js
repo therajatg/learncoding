@@ -37,23 +37,6 @@ export function HeroContent() {
         }
       }}
     >
-      {/* <div className={style.main}>
-        <img
-          className={style.firstImage}
-          src="https://res.cloudinary.com/therajatg/image/upload/v1657897068/social%20media/Coding_workshop-rafiki_1_cfycy4.svg"
-          alt=""
-        />
-        <p className={style.text}>
-          we code to <span className={style.focus}>build</span> ,
-          <br />
-          we code to <span className={style.focus}>solve problems</span> ,
-          <br />
-          we code to <span className={style.focus}>inspire</span> ,
-          <br />
-          we code to <span className={style.focus}>change the world</span>,
-        </p>
-      </div> */}
-
       {items.map((item) => (
         <img
           src={item.URL}
