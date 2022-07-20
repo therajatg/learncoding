@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Navbar, RelatedVideos, relatedVideos } from "../../components/index";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { Navbar, RelatedVideos, PlaylistModal } from "../../components/index";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
@@ -15,6 +15,7 @@ import style from "./PlayVideo.module.css";
 import axios from "axios";
 
 export function PlayVideo() {
+  const location = useLocation();
   const { authState } = useAuth();
   const navigate = useNavigate();
   const { token } = authState;
@@ -24,6 +25,7 @@ export function PlayVideo() {
   const [clickedVideo, setClickedVideo] = useState({});
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [allVideos, setAllVideos] = useState([]);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -76,7 +78,7 @@ export function PlayVideo() {
                           dataDispatch
                         )
                       : addToWatchLater(clickedVideo, token, dataDispatch)
-                    : navigate("/login");
+                    : navigate("/login", { state: { from: location } });
                 }}
               />
               <AiFillLike
@@ -87,14 +89,24 @@ export function PlayVideo() {
                     ? isPresentInLiked
                       ? deleteFromLiked(clickedVideo._id, token, dataDispatch)
                       : addToLiked(clickedVideo, token, dataDispatch)
-                    : navigate("/login");
+                    : navigate("/login", { state: { from: location } });
                 }}
               />
-              <MdPlaylistAdd title="Add to Playlist" />
+              <MdPlaylistAdd
+                title="Add to Playlist"
+                onClick={(e) => {
+                  token
+                    ? setModal((prev) => !prev)
+                    : navigate("/login", { state: { from: location } });
+                }}
+              />
             </h2>
           </div>
         </div>
         <RelatedVideos relatedVideos={relatedVideos} />
+        {modal ? (
+          <PlaylistModal setModal={setModal} videoDetail={clickedVideo} />
+        ) : null}
       </main>
     </>
   );
