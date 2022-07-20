@@ -13,3 +13,7 @@
 .exploreLink:hover {
   color: var(--button-dark-color);
 }
+
+.image {
+  height: 70%;
+}

@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../contexts/authContext";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export function Login() {
   const { authState, authDispatch } = useAuth();
@@ -21,10 +22,11 @@ export function Login() {
       });
       localStorage.setItem("token", res.data.encodedToken);
       authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
+      toast.success("Login Successful");
       let from = location.state?.from?.pathname || "/";
       navigate(from, { replace: true });
     } catch (err) {
-      console.log(err);
+      toast.error(`${err.response.status} Error. Please try again!`);
     }
   }
 
@@ -37,21 +39,20 @@ export function Login() {
       });
       localStorage.setItem("token", res.data.encodedToken);
       authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
+      toast.success("Login Successful");
       let from = location.state?.from?.pathname || "/";
       navigate(from, { replace: true });
     } catch (err) {
-      console.log(err);
+      toast.error(`${err.response.status} Error. Please try again!`);
     }
   }
   return (
     <div className={style.loginPage}>
-      <h1>code2BUILD</h1>
-
       <form
         className={style.form}
         onSubmit={flag ? loginHandler : guestHandler}
       >
-        <h2>LOGIN</h2>
+        <p className={style.title}>Login to code2BUILD</p>
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -81,11 +82,8 @@ export function Login() {
         <button className={style.guestLoginBtn} onClick={() => setFlag(false)}>
           Login As Guest
         </button>
-        <div className={style.orLine}>
-          <hr className={style.line} />
-          <p className={style.or}>OR</p>
-        </div>
-        <p>
+
+        <p className={style.signupLine}>
           Need An Account?{" "}
           <Link to="/signup" className={style.signup}>
             Signup

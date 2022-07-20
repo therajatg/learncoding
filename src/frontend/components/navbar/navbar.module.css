@@ -1,38 +1,103 @@
 .navContainer {
   display: flex;
   background-color: var(--nav-color);
+  background-color: var(--background-color);
   padding: 0 var(--nav-side-padding);
   justify-content: space-between;
-  column-gap: 2rem;
   top: 0px;
   position: sticky;
-  margin-bottom: 3.5rem;
+  margin-bottom: 0.7rem;
+  z-index: 1;
 }
 
 .topLine {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40vw;
+  flex-grow: 1;
+  max-width: 45vw;
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger:hover {
+  cursor: pointer;
+}
+
+.hamburgerMenu {
+  position: absolute;
+  min-width: 6rem;
+  min-height: 100vh;
+  background-color: var(--nav-color);
+  margin-top: 0;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  padding: 2rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.hamburgerMenuLogo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.noDisplay {
+  display: none;
+}
+
+.hamburgerMenu li {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.hamburgerMenu a {
+  color: var(--nav-text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.hamburgerMenu p {
+  color: var(--nav-text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.hamburgerMenu p:hover {
+  cursor: pointer;
 }
 
 .bottomLine {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 40vw;
+  max-width: 37vw;
+  flex-grow: 1;
 }
 
 .logo {
   text-decoration: none;
-  color: white;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 .option {
   color: var(--nav-text-color);
   text-decoration: none;
   font-weight: 500;
-  font-size: medium;
+  font-size: 1.12rem;
 }
 
 .dropdown {
@@ -41,7 +106,7 @@
 
 .dropdownContent {
   position: absolute;
-  width: 10rem;
+  width: fit-content;
   background: linear-gradient(
     to top,
     var(--background-color),
@@ -52,7 +117,10 @@
 }
 
 .dropdown:hover .dropdownContent {
-  display: block;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .searchBar {
@@ -67,13 +135,17 @@
   width: 26vw;
   height: 1.8rem;
   border: none;
-  background-color: var(--nav-search-color);
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-bottom: 2px solid var(--button-dark-color);
 }
 
 .searchIcon {
-  color: var(--nav-text-color);
+  color: #8e8e8e;
   background-color: var(--nav-color);
   position: absolute;
+  margin-right: 0.5rem;
 }
 
 .login {
@@ -81,6 +153,36 @@
   border: none;
   border-radius: 5px;
   padding: 0.5rem;
-  font-weight: 1000;
-  color: var(--nav-text-color);
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.login:hover {
+  background-color: var(--button-light-color);
+}
+
+@media screen and (max-width: 1350px) {
+  .hamburger {
+    display: block;
+  }
+  .option {
+    display: none;
+  }
+  .topLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 0;
+    column-gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .searchBar {
+    display: none;
+  }
+
+  .bottomLine {
+    flex-grow: 0;
+  }
 }

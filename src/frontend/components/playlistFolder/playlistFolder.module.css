@@ -8,6 +8,23 @@
   height: 10.547rem;
   display: flex;
   position: relative;
+  border-radius: 0.6rem;
+}
+
+.emptyPlaylist {
+  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.emptyPlaylist a {
+  color: var(--button-light-color);
+}
+
+.emptyPlaylist a:hover {
+  color: var(--button-dark-color);
 }
 
 .overlay {
@@ -29,11 +46,13 @@
 .playlistAction {
   background-color: var(--nav-color);
   color: var(--text-color);
-  font-weight: 600;
+  /* font-weight: 600; */
   border: none;
+  border-radius: 0.3rem;
   padding: 2px 7px;
   display: flex;
   justify-content: space-between;
+  font-size: 1.1rem;
 }
 
 .delete:hover {

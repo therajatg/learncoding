@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const getAllPlaylists = async (token, dataDispatch) => {
   try {
@@ -58,8 +59,9 @@ const addVideoToPlaylist = async (playlistId, video, token, dataDispatch) => {
       }
     );
     dataDispatch({ type: "SINGLE_PLAYLIST", payload: res.data.playlist });
+    toast.success(`Video added to playlist`);
   } catch (err) {
-    console.log(err);
+    toast.error(`Error. Please try again later`);
   }
 };
 
@@ -82,6 +84,7 @@ const deleteVideoFromPlaylist = async (
   token,
   dataDispatch
 ) => {
+  console.log(playlistId, videoId);
   try {
     const res = await axios.delete(
       `/api/user/playlists/${playlistId}/${videoId}`,
@@ -92,8 +95,9 @@ const deleteVideoFromPlaylist = async (
       }
     );
     dataDispatch({ type: "SINGLE_PLAYLIST", payload: res.data.playlist });
+    toast.success(`Video removed from playlist`);
   } catch (err) {
-    console.log(err);
+    toast.error(`Error. Please try again later.`);
   }
 };
 

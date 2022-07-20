@@ -10,19 +10,20 @@
   background-color: var(--nav-color);
   display: flex;
   flex-direction: column;
-  width: 30%;
+  min-width: 25%;
   padding: 2rem 2rem 5rem 2rem;
   row-gap: 2rem;
-  font-weight: 600;
+  border-radius: 1.5rem;
 }
 
-.form h2 {
-  margin: auto;
+.title {
+  align-self: center;
+  font-size: 1.4rem;
 }
 
 .form input {
   border-radius: 0.5rem;
-  height: 1.7rem;
+  height: 2rem;
   display: block;
   width: 100%;
 }
@@ -30,8 +31,8 @@
 .form button {
   border: none;
   border-radius: 0.5rem;
-  padding: 0.5rem;
-  font-weight: 700;
+  padding: 0.6rem;
+  font-size: 1rem;
 }
 
 .loginBtn {
@@ -45,22 +46,19 @@
 
 .guestLoginBtn {
   color: black;
+  margin-top: -1rem;
 }
 
-.orLine {
-  position: relative;
-}
-
-.line {
-  border: 0.2px dashed;
-}
-
-.or {
-  position: absolute;
-  z-index: 2;
+.signupLine {
+  font-size: 1.1rem;
+  align-self: center;
 }
 
 .signup {
   color: var(--button-dark-color);
   text-decoration: none;
+}
+
+.signup:hover {
+  color: var(--button-light-color);
 }

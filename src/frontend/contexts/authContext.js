@@ -5,6 +5,7 @@ const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
 
 function AuthProvider({ children }) {
+  const localstoragetoken = localStorage.getItem("token");
   const [authState, authDispatch] = useReducer(authReducer, {
     user: {
       firstName: null,
@@ -12,7 +13,7 @@ function AuthProvider({ children }) {
       email: null,
       password: null,
     },
-    token: null,
+    token: localstoragetoken ?? null,
     error: null,
   });
   return (
