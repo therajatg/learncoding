@@ -27,3 +27,13 @@
   width: 12rem;
   word-wrap: break-word;
 }
+
+@media screen and (max-width: 1350px) {
+  .relatedVideos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    column-gap: 2rem;
+  }
+}

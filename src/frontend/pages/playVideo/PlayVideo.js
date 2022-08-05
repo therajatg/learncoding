@@ -4,6 +4,7 @@ import { Navbar, RelatedVideos, PlaylistModal } from "../../components/index";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 import { useAuth, useData } from "../../contexts/index";
 import {
   addToLiked,
@@ -53,53 +54,78 @@ export function PlayVideo() {
       <Navbar />
       <main className={style.main}>
         <div className={style.playingVideo}>
-          <iframe
-            width="900"
-            height="506"
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
-          ></iframe>
+          <div className={style.videoContainer}>
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+            ></iframe>
+          </div>
 
-          <div className={style.videoContent}>
+          <div>
             <p className={style.videoTitle}>{clickedVideo.title}</p>
             <h2 className={style.actions}>
-              <BsFillStopwatchFill
-                title="Watch Later"
-                className={isPresentInWatchLater ? style.present : style.absent}
-                onClick={() => {
-                  token
-                    ? isPresentInWatchLater
-                      ? deleteFromWatchLater(
-                          clickedVideo._id,
-                          token,
-                          dataDispatch
-                        )
-                      : addToWatchLater(clickedVideo, token, dataDispatch)
-                    : navigate("/login", { state: { from: location } });
-                }}
-              />
-              <AiFillLike
-                title="Like"
-                className={isPresentInLiked ? style.present : style.absent}
-                onClick={() => {
-                  token
-                    ? isPresentInLiked
-                      ? deleteFromLiked(clickedVideo._id, token, dataDispatch)
-                      : addToLiked(clickedVideo, token, dataDispatch)
-                    : navigate("/login", { state: { from: location } });
-                }}
-              />
-              <MdPlaylistAdd
-                title="Add to Playlist"
+              {isPresentInLiked ? (
+                <button
+                  className={style.actionBtn}
+                  onClick={() =>
+                    deleteFromLiked(clickedVideo._id, token, dataDispatch)
+                  }
+                >
+                  <AiFillLike />
+                  Liked
+                </button>
+              ) : (
+                <button
+                  className={style.actionBtn}
+                  onClick={() => {
+                    token
+                      ? addToLiked(clickedVideo, token, dataDispatch)
+                      : navigate("/login", { state: { from: location } });
+                  }}
+                >
+                  <AiFillLike />
+                  Like
+                </button>
+              )}
+              {isPresentInWatchLater ? (
+                <button
+                  className={style.actionBtn}
+                  onClick={() =>
+                    deleteFromWatchLater(clickedVideo._id, token, dataDispatch)
+                  }
+                >
+                  <IoIosCheckmarkCircle />
+                  Watch Later
+                </button>
+              ) : (
+                <button
+                  className={style.actionBtn}
+                  onClick={() => {
+                    token
+                      ? addToWatchLater(clickedVideo, token, dataDispatch)
+                      : navigate("/login", { state: { from: location } });
+                  }}
+                >
+                  <BsFillStopwatchFill />
+                  Watch Later
+                </button>
+              )}
+              <button
+                className={style.actionBtn}
                 onClick={(e) => {
                   token
                     ? setModal((prev) => !prev)
                     : navigate("/login", { state: { from: location } });
                 }}
-              />
+              >
+                <MdPlaylistAdd />
+                Add To Playlist
+              </button>
             </h2>
           </div>
         </div>

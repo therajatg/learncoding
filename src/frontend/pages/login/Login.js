@@ -8,18 +8,15 @@ import { toast } from "react-toastify";
 export function Login() {
   const { authState, authDispatch } = useAuth();
   const { user } = authState;
+  const [detail, setDetail] = useState({ email: "", password: "" });
   const [flag, setFlag] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   async function loginHandler(e) {
-    console.log(e);
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/login", {
-        email: user.email,
-        password: user.password,
-      });
+      const res = await axios.post("/api/auth/login", detail);
       localStorage.setItem("token", res.data.encodedToken);
       authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
       toast.success("Login Successful");
@@ -30,28 +27,9 @@ export function Login() {
     }
   }
 
-  async function guestHandler(e) {
-    e.preventDefault();
-    try {
-      const res = await axios.post("/api/auth/login", {
-        email: "rajatgupta@gmail.com",
-        password: "rajat123",
-      });
-      localStorage.setItem("token", res.data.encodedToken);
-      authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
-      toast.success("Login Successful");
-      let from = location.state?.from?.pathname || "/";
-      navigate(from, { replace: true });
-    } catch (err) {
-      toast.error(`${err.response.status} Error. Please try again!`);
-    }
-  }
   return (
     <div className={style.loginPage}>
-      <form
-        className={style.form}
-        onSubmit={flag ? loginHandler : guestHandler}
-      >
+      <form className={style.form} onSubmit={loginHandler}>
         <p className={style.title}>Login to code2BUILD</p>
         <div>
           <label htmlFor="email">Email</label>
@@ -59,9 +37,9 @@ export function Login() {
             type="email"
             id="email"
             name="email"
-            onChange={(e) =>
-              authDispatch({ type: "EMAIL", payload: e.target.value })
-            }
+            value={detail.email}
+            onChange={(e) => setDetail({ ...detail, email: e.target.value })}
+            required={flag}
           />
         </div>
         <div>
@@ -70,16 +48,26 @@ export function Login() {
             type="password"
             id="password"
             name="password"
-            onChange={(e) =>
-              authDispatch({ type: "PASSWORD", payload: e.target.value })
-            }
+            value={detail.password}
+            onChange={(e) => setDetail({ ...detail, password: e.target.value })}
+            required={flag}
           />
           <span>Forgot Password?</span>
         </div>
         <button className={style.loginBtn} onClick={() => setFlag(true)}>
           LOGIN
         </button>
-        <button className={style.guestLoginBtn} onClick={() => setFlag(false)}>
+        <button
+          className={style.guestLoginBtn}
+          onClick={() => {
+            setFlag(false);
+            setDetail({
+              ...detail,
+              email: "rajatgupta@gmail.com",
+              password: "rajat123",
+            });
+          }}
+        >
           Login As Guest
         </button>
 

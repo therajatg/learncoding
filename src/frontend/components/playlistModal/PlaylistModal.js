@@ -22,8 +22,8 @@ export function PlaylistModal({ setModal, videoDetail }) {
   const { playlistData } = dataState;
 
   return (
-    <div className={style.main}>
-      <div className={style.modal}>
+    <div className={style.main} onClick={() => setModal(false)}>
+      <div className={style.modal} onClick={(e) => e.stopPropagation()}>
         <div className={style.topLineAndPlaylistNames}>
           <div className={style.topLine}>
             Save to...

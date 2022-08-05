@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const getWatchLater = async (token, dataDispatch) => {
   try {
@@ -27,8 +28,10 @@ const addToWatchLater = async (video, token, dataDispatch) => {
       }
     );
     dataDispatch({ type: "WATCH_LATER", payload: res.data.watchlater });
+    toast.success("Video added to watch later");
   } catch (err) {
     console.log(err);
+    toast.error("Error. Please try again later");
   }
 };
 
@@ -40,8 +43,10 @@ const deleteFromWatchLater = async (id, token, dataDispatch) => {
       },
     });
     dataDispatch({ type: "WATCH_LATER", payload: res.data.watchlater });
+    toast.success("Video removed from watch later");
   } catch (err) {
     console.log(err);
+    toast.error("Error. Please try again later");
   }
 };
 

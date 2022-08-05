@@ -11,22 +11,10 @@
   cursor: pointer;
 }
 
-.firstImage {
-  max-width: 30rem;
-}
-
 .image {
   object-fit: contain;
 }
 
 .image:hover {
   cursor: pointer;
-}
-
-.text {
-  font-size: 2rem;
-}
-
-.focus {
-  color: var(--button-dark-color);
 }
