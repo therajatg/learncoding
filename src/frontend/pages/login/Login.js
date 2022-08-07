@@ -7,9 +7,7 @@ import { toast } from "react-toastify";
 
 export function Login() {
   const { authState, authDispatch } = useAuth();
-  const { user } = authState;
   const [detail, setDetail] = useState({ email: "", password: "" });
-  const [flag, setFlag] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -39,7 +37,7 @@ export function Login() {
             name="email"
             value={detail.email}
             onChange={(e) => setDetail({ ...detail, email: e.target.value })}
-            required={flag}
+            required
           />
         </div>
         <div>
@@ -50,17 +48,14 @@ export function Login() {
             name="password"
             value={detail.password}
             onChange={(e) => setDetail({ ...detail, password: e.target.value })}
-            required={flag}
+            required
           />
           <span>Forgot Password?</span>
         </div>
-        <button className={style.loginBtn} onClick={() => setFlag(true)}>
-          LOGIN
-        </button>
+        <button className={style.loginBtn}>LOGIN</button>
         <button
           className={style.guestLoginBtn}
           onClick={() => {
-            setFlag(false);
             setDetail({
               ...detail,
               email: "rajatgupta@gmail.com",

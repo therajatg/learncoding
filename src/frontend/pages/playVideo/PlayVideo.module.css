@@ -41,7 +41,7 @@
 }
 
 .actionBtn {
-  background-color: #333333;
+  background-color: var(--active-color);
   color: white;
   border: none;
   border-radius: 1rem;

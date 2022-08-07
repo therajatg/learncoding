@@ -40,6 +40,7 @@ img,
 .videoAction button:hover {
   background: var(--card-button-background-hover-color);
   border: none;
+  border-radius: 1rem;
 }
 
 .videoCard:hover .videoAction {

@@ -1,4 +1,5 @@
 import style from "./signup.module.css";
+import { useState } from "react";
 import { useAuth } from "../../contexts/authContext";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -6,20 +7,22 @@ import axios from "axios";
 
 export function Signup() {
   const { authState, authDispatch } = useAuth();
-  const { user } = authState;
+  const [detail, setDetail] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [dummy, setDummy] = useState(false);
   const navigate = useNavigate();
-
-  console.log(user);
 
   async function signupHandler(e) {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/auth/signup", {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        password: user.password,
-      });
+      let res;
+      dummy === true
+        ? (res = await axios.post("/api/auth/login", detail))
+        : (res = await axios.post("/api/auth/signup", detail));
       localStorage.setItem("token", res.data.encodedToken);
       authDispatch({ type: "TOKEN", payload: res.data.encodedToken });
       toast.success("Signup Successful");
@@ -37,31 +40,73 @@ export function Signup() {
         <div className={style.name}>
           <div>
             <label htmlFor="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" required />
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={detail.firstName}
+              onChange={(e) =>
+                setDetail({ ...detail, firstName: e.target.value })
+              }
+              required
+            />
           </div>
           <div>
             <label htmlFor="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" required />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={detail.lastName}
+              onChange={(e) =>
+                setDetail({ ...detail, lastName: e.target.value })
+              }
+              required
+            />
           </div>
         </div>
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
           <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
+            type="email"
+            id="email"
+            name="email"
+            value={detail.email}
+            onChange={(e) => setDetail({ ...detail, email: e.target.value })}
             required
           />
         </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={detail.password}
+            onChange={(e) => setDetail({ ...detail, password: e.target.value })}
+            required
+          />
+        </div>
+
         <button className={style.signupBtn}>Create New Account</button>
+        <button
+          className={style.demoSignupBtn}
+          onClick={() => {
+            {
+              setDummy(true);
+
+              setDetail({
+                ...detail,
+                firstName: "Dummy",
+                lastName: "Bro",
+                email: "rajatgupta@gmail.com",
+                password: "rajat123",
+              });
+            }
+          }}
+        >
+          Dummy Signup
+        </button>
         <p className={style.loginLine}>
           Already have an account?{" "}
           <Link to="/login" className={style.login}>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AiFillLike } from "react-icons/ai";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { MdPlaylistAdd } from "react-icons/md";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import { useData } from "../../contexts/dataContext";
 import {
   addToWatchLater,
@@ -27,6 +27,7 @@ export function VideoCard({ videoDetail }) {
   const { thumbnail, _id } = videoDetail;
   const [modal, setModal] = useState(false);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   return (
     <div className={modal ? style.videoCardWithoutHover : style.videoCard}>
@@ -101,6 +102,7 @@ export function VideoCard({ videoDetail }) {
             Add To Liked
           </button>
         )}
+
         <button
           className={style.addToPlaylist}
           onClick={(e) => {
@@ -108,16 +110,19 @@ export function VideoCard({ videoDetail }) {
           }}
         >
           <MdPlaylistAdd />
-          Add To Playlist
+          {pathname.split("/")[1] === `playlist`
+            ? "Add To Another Playlist"
+            : "Add To Playlist"}
         </button>
-        {window?.location?.pathname === "/history" && (
+
+        {pathname === "/history" && (
           <button
             onClick={() => deleteItemFromHistory(_id, token, dataDispatch)}
           >
             Remove From History
           </button>
         )}
-        {window?.location?.pathname === `/playlist/${playlistId}` && (
+        {pathname === `/playlist/${playlistId}` && (
           <button
             onClick={() =>
               deleteVideoFromPlaylist(

@@ -12,7 +12,8 @@
   --button-light-color: #3bb2f6;
   --card-text-background-color-one: rgba(4, 8, 15, 0);
   --card-text-background-color-two: #192133;
-  --card-button-background-hover-color: grey;
+  --card-button-background-hover-color: #373d4a;
+  --active-color: #333333;
   --nav-side-padding: 1rem;
   --body-side-padding: 1rem;
   --text-font: "Ubuntu", sans-serif;

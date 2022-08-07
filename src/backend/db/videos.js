@@ -200,4 +200,10 @@ export const videos = [
     thumbnail: `${url}/javascript concepts/IIFE_gmz7u2.png`,
     category: "javascript concepts",
   },
+  {
+    _id: "1zj5mRUSqdY",
+    title: "IIFE (Immediately Invoked Function Expression) in JavaScript",
+    thumbnail: `${url}/html/Html_shorthand_pqxne3.png`,
+    category: "html",
+  },
 ];

@@ -7,7 +7,7 @@
   top: 0px;
   position: sticky;
   margin-bottom: 0.7rem;
-  z-index: 1;
+  z-index: 3;
 }
 
 .topLine {
@@ -32,7 +32,7 @@
   min-height: 100vh;
   background-color: var(--nav-color);
   margin-top: 0;
-  top: 0;
+  top: 5rem;
   left: 0;
   z-index: 3;
   padding: 2rem;
@@ -61,6 +61,12 @@
   column-gap: 1rem;
 }
 
+.active {
+  background-color: var(--active-color);
+  padding: 0.3rem 0.5rem;
+  border-radius: 1rem;
+}
+
 .hamburgerMenu a {
   color: var(--nav-text-color);
   text-decoration: none;
@@ -84,6 +90,7 @@
   justify-content: space-between;
   max-width: 37vw;
   flex-grow: 1;
+  column-gap: 1rem;
 }
 
 .logo {
@@ -143,7 +150,6 @@
 
 .searchIcon {
   color: #8e8e8e;
-  background-color: var(--nav-color);
   position: absolute;
   margin-right: 0.5rem;
 }
