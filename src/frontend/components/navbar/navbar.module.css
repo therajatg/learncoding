@@ -7,7 +7,7 @@
   top: 0px;
   position: sticky;
   margin-bottom: 0.7rem;
-  z-index: 3;
+  z-index: 1;
 }
 
 .topLine {
@@ -34,7 +34,6 @@
   margin-top: 0;
   top: 5rem;
   left: 0;
-  z-index: 3;
   padding: 2rem;
   list-style: none;
   display: flex;
